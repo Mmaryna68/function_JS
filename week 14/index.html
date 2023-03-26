@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Функции</title>
+    <style>
+      /* CSS стили для всей страницы */
+      body {
+        background-color: lightblue;
+        font-family: Arial, sans-serif;
+      }
+
+      /* CSS стили для кнопки  1 задания*/
+      button {
+        background-color: orange;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      body {
+        text-align: center;
+      }
+
+      .main__title {
+        margin-top: 50px;
+        text-align: center;
+      }
+
+      .gallery-image {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        height: 500px;
+      }
+
+      .main__button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: gray;
+        color: white;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+
+      .main__button:hover {
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Cats</h1>
+    <h2>Практическое задание</h2>
+    <main>
+      <button onclick="alert('Приветствую! Я учу JavaScript!')">
+        Нажми меня
+      </button>
+      <button id="myButton">И меня тоже нажми!</button>
+
+      <h2 class="main__title">Cats Gallery</h2>
+      <div
+        class="gallery-image"
+        style="background-image: url(images/catbatterfly.jpg)"
+      ></div>
+      <button class="main__button" id="previous-button">Previous</button>
+      <button class="main__button" id="next-button">Next</button>
+
+      <!-- Проверка високосного года -->
+      <h2>Введите год для проверки:</h2>
+      <form>
+        <input type="text" id="year" name="year" />
+        <input type="button" value="Проверить" onclick="checkLeapYear()" />
+      </form>
+      <p id="result"></p>
+    </main>
+
+    <script>
+      let imageIndex = 0;
+      let galleryImage = document.querySelector(".gallery-image");
+      let previousButton = document.querySelector("#previous-button");
+      let nextButton = document.querySelector("#next-button");
+      let images = ["images/catbatterfly.jpg", "images/catglasses.jpg"];
+
+      function updateImage() {
+        galleryImage.style.backgroundImage = `url(${images[imageIndex]})`;
+      }
+
+      previousButton.addEventListener("click", function () {
+        imageIndex = (imageIndex - 1 + images.length) % images.length;
+        updateImage();
+      });
+
+      nextButton.addEventListener("click", function () {
+        imageIndex = (imageIndex + 1) % images.length;
+        updateImage();
+      });
+
+      updateImage();
+    </script>
+
+    <script src="leapyear.js"></script>
+  </body>
+</html>
